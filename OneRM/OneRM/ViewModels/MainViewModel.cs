@@ -26,7 +26,7 @@ namespace OneRM.ViewModels
                     HeroColor = "#FFCA81",
                     ImageUrl = "",
                     Weight = 0,
-                    IsFeatured = true
+                    IsFeatured = false
                 },
                 new ExerciseViewModel()
                 {
@@ -34,7 +34,7 @@ namespace OneRM.ViewModels
                     HeroColor = "#D69DFB",
                     ImageUrl = "",
                     Weight = 0,
-                    IsFeatured = true
+                    IsFeatured = false
                 },
                  new ExerciseViewModel()
                 {
