@@ -6,6 +6,15 @@
              mc:Ignorable="d"
              x:Class="OneRM.App">
     <Application.Resources>
-
+        <ResourceDictionary>
+            <OnPlatform x:TypeArguments="x:String" x:Key="MontserratMedium">
+                <On Platform="iOS" Value="Montserrat-Medium"/>
+                <On Platform="Android" Value="Montserrat-Medium.ttf#Regular"/>
+            </OnPlatform>
+            <OnPlatform x:TypeArguments="x:String" x:Key="MontserratLight">
+                <On Platform="iOS" Value="Montserrat-Light"/>
+                <On Platform="Android" Value="Montserrat-Light.ttf#Regular"/>
+            </OnPlatform>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
