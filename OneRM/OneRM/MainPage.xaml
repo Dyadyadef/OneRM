@@ -50,9 +50,10 @@
             BackgroundColor="White"
             Source="hamburger_icon" />
         <ImageButton
+            x:Name="BasketIcon"
             Padding="10"
             AbsoluteLayout.LayoutBounds="340, 20, 48, 48"
-            Source="baseline_timer_black_18"
+            Source="basket_icon"
             Style="{StaticResource ButtonStyle}" />
         <StackLayout AbsoluteLayout.LayoutBounds="20, 100, 340, 100">
             <Label Style="{StaticResource HeaderFontLight}" Text="Выбери своё" />
@@ -141,16 +142,14 @@
                                             TextColor="White"
                                             TranslationY="10"
                                             VerticalOptions="Start" />
-                                        <!--<Label VerticalTextAlignment="Start" VerticalOptions="Start">
-                                            <Label.FormattedText>
-                                                <FormattedString>
-                                                    <Span Text="{Binding Weight}" FontSize="40"/>
-                                                    <Span Text="кг" FontSize="20"/>
-                                                </FormattedString>
-                                            </Label.FormattedText>
-                                        </Label>-->
                                     </StackLayout>
                                 </StackLayout>
+                                <Image
+                                    HorizontalOptions="End"
+                                    Source="moss"
+                                    TranslationX="40"
+                                    TranslationY="40"
+                                    VerticalOptions="End" />
                             </Grid>
                         </pancake:PancakeView>
                     </DataTemplate>

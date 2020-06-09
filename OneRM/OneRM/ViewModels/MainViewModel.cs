@@ -16,7 +16,7 @@ namespace OneRM.ViewModels
                 {
                     Name = "Присед",
                     HeroColor = "#96C9F8",
-                    ImageUrl = "",
+                    ImageUrl = "moss",
                     Weight = 0,
                     IsFeatured = true
                 },
@@ -24,7 +24,7 @@ namespace OneRM.ViewModels
                 {
                     Name = "Становая",
                     HeroColor = "#FFCA81",
-                    ImageUrl = "",
+                    ImageUrl = "moss",
                     Weight = 0,
                     IsFeatured = false
                 },
@@ -32,7 +32,7 @@ namespace OneRM.ViewModels
                 {
                     Name = "Румынская",
                     HeroColor = "#D69DFB",
-                    ImageUrl = "",
+                    ImageUrl = "moss",
                     Weight = 0,
                     IsFeatured = false
                 },
@@ -40,7 +40,7 @@ namespace OneRM.ViewModels
                 {
                     Name = "Жим",
                     HeroColor = "#74D59E",
-                    ImageUrl = "",
+                    ImageUrl = "moss",
                     Weight = 0,
                     IsFeatured = true
                 }
