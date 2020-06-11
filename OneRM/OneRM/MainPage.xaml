@@ -45,9 +45,11 @@
 
     <AbsoluteLayout>
         <ImageButton
+            x:Name="HamburgerButton"
             Padding="10"
             AbsoluteLayout.LayoutBounds="20, 20, 48, 48"
             BackgroundColor="White"
+            Clicked="HamburgerButton_Clicked"
             Source="hamburger_icon" />
         <ImageButton
             x:Name="BasketIcon"
@@ -61,11 +63,13 @@
         </StackLayout>
 
         <BoxView
+            x:Name="SearchBackground"
             AbsoluteLayout.LayoutBounds="20, 200, 300, 48"
             BackgroundColor="{StaticResource ButtonBackgroundColor}"
             CornerRadius="10" />
 
         <ImageButton
+            x:Name="SearchIcon"
             Padding="14"
             AbsoluteLayout.LayoutBounds="20, 200, 48, 48"
             BackgroundColor="Transparent"
@@ -75,6 +79,7 @@
         <Entry AbsoluteLayout.LayoutBounds="60, 200, 240, 48" Placeholder="Search" />
 
         <ImageButton
+            x:Name="SettingsIcon"
             Padding="14"
             AbsoluteLayout.LayoutBounds="340, 200, 48, 48"
             BackgroundColor="{StaticResource ButtonBackgroundColor}"
@@ -82,7 +87,7 @@
             Style="{StaticResource ButtonStyle}" />
 
 
-        <ScrollView AbsoluteLayout.LayoutBounds="20, 300, 380, 300">
+        <ScrollView x:Name="ScrollContainer" AbsoluteLayout.LayoutBounds="20, 300, 380, 300">
 
             <FlexLayout
                 BindableLayout.ItemsSource="{Binding Exercises}"
@@ -146,7 +151,7 @@
                                 </StackLayout>
                                 <Image
                                     HorizontalOptions="End"
-                                    Source="moss"
+                                    Source="{Binding ImageUrl}"
                                     TranslationX="40"
                                     TranslationY="40"
                                     VerticalOptions="End" />
