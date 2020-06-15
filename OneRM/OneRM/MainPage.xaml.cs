@@ -71,7 +71,7 @@ namespace OneRM
             AbsoluteLayout.SetLayoutBounds(SearchIcon, searchRect);
 
             Rectangle searchRectCollapsed = new Rectangle(
-                x: BasketIcon.Bounds.Left - (margin + SettingsIcon.Width),
+                x: BasketIcon.Bounds.Left - (margin + SettingsIcon.Width + margin + SearchIcon.Width),
                 y: margin,
                 width: SearchIcon.Width,
                 height: SearchIcon.Height
@@ -103,7 +103,7 @@ namespace OneRM
             AbsoluteLayout.SetLayoutBounds(SearchBackground, searchBackgroundRect);
 
             Rectangle searchBackgroundCollapsedRect = new Rectangle(
-                x: BasketIcon.Bounds.Left - (margin + SettingsIcon.Width),
+                x: BasketIcon.Bounds.Left - (margin + SettingsIcon.Width + margin + SearchIcon.Width),
                 y: margin,
                 width: SettingsIcon.Width,
                 height: SettingsIcon.Height
@@ -124,14 +124,18 @@ namespace OneRM
            {
                 new ViewTransition(SettingsIcon, AnimationType.Layout, settingsRect),
                 new ViewTransition(SearchIcon, AnimationType.Layout, searchRect),
-                new ViewTransition(SearchBackground, AnimationType.Layout, searchBackgroundRect)
+                new ViewTransition(SearchBackground, AnimationType.Layout, searchBackgroundRect),
+                new ViewTransition(Header, AnimationType.Opacity, 1),
+                new ViewTransition(SearchEntry, AnimationType.Opacity, 1)
             });
 
             _storyboard.Add(States.SearchHidden, new[]
             {
                 new ViewTransition(SettingsIcon, AnimationType.Layout, settingsRectCollapsed),
                 new ViewTransition(SearchIcon, AnimationType.Layout, searchRectCollapsed),
-                new ViewTransition(SearchBackground, AnimationType.Layout, searchBackgroundCollapsedRect)
+                new ViewTransition(SearchBackground, AnimationType.Layout, searchBackgroundCollapsedRect),
+                new ViewTransition(Header, AnimationType.Opacity, 0),
+                new ViewTransition(SearchEntry, AnimationType.Opacity, 0)
             });
         }
 
