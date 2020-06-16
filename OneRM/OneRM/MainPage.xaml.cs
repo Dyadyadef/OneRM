@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Forms.PancakeView;
 
 namespace OneRM
 {
@@ -180,6 +181,12 @@ namespace OneRM
 
             _storyboard.Go(newState);
             CurrentState = newState;
+        }
+
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            PancakeView element = sender as PancakeView;
+
         }
     }
 }
