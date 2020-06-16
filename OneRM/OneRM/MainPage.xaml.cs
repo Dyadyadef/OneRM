@@ -21,17 +21,39 @@ namespace OneRM
         public MainPage()
         {
             InitializeComponent();
+            SizeChanged += MainPage_SizeChanged;
         }
 
         Storyboard _storyboard = new Storyboard();
 
         const int margin = 20;
-
+        const int animationSpeed = 250;
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            SizeChanged += MainPage_SizeChanged;
+            ScrollContainer.Scrolled += ScrollContainer_Scrolled;
         }
+
+        private async void ScrollContainer_Scrolled(object sender, ScrolledEventArgs e)
+        {
+            if ((e.ScrollY > 0) && (CurrentState != States.SearchHidden))
+            {
+                _storyboard.Go(States.SearchHidden);
+                CurrentState = States.SearchHidden;
+                ScrollContainer.IsEnabled = false;
+                await Task.Delay(animationSpeed);
+                ScrollContainer.IsEnabled = true;
+            }
+            else if ((e.ScrollY == 0) && (CurrentState != States.SearchExpanded))
+            {
+                _storyboard.Go(States.SearchExpanded);
+                CurrentState = States.SearchExpanded;
+                ScrollContainer.IsEnabled = false;
+                await Task.Delay(animationSpeed);
+                ScrollContainer.IsEnabled = true;
+            }
+        }
+
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
@@ -118,24 +140,32 @@ namespace OneRM
                 );
             AbsoluteLayout.SetLayoutBounds(ScrollContainer, scrollContainerRect);
 
+            Rectangle scrollContainerRectCollapsed = new Rectangle(
+                x: margin,
+                y: margin + BasketIcon.Height + margin,
+                width: width - (2 * margin),
+                height: height - (margin + BasketIcon.Height + margin)
+                );
 
             // add the positions tp the state machine
             _storyboard.Add(States.SearchExpanded, new[]
            {
-                new ViewTransition(SettingsIcon, AnimationType.Layout, settingsRect),
-                new ViewTransition(SearchIcon, AnimationType.Layout, searchRect),
-                new ViewTransition(SearchBackground, AnimationType.Layout, searchBackgroundRect),
-                new ViewTransition(Header, AnimationType.Opacity, 1),
-                new ViewTransition(SearchEntry, AnimationType.Opacity, 1)
+                new ViewTransition(Header, AnimationType.Opacity, 1, animationSpeed),
+                new ViewTransition(SearchEntry, AnimationType.Opacity, 1, animationSpeed),
+                new ViewTransition(SettingsIcon, AnimationType.Layout, settingsRect, animationSpeed),
+                new ViewTransition(SearchIcon, AnimationType.Layout, searchRect, animationSpeed),
+                new ViewTransition(SearchBackground, AnimationType.Layout, searchBackgroundRect, animationSpeed),
+                new ViewTransition(ScrollContainer, AnimationType.Layout, scrollContainerRect, animationSpeed)
             });
 
             _storyboard.Add(States.SearchHidden, new[]
             {
-                new ViewTransition(SettingsIcon, AnimationType.Layout, settingsRectCollapsed),
-                new ViewTransition(SearchIcon, AnimationType.Layout, searchRectCollapsed),
-                new ViewTransition(SearchBackground, AnimationType.Layout, searchBackgroundCollapsedRect),
-                new ViewTransition(Header, AnimationType.Opacity, 0),
-                new ViewTransition(SearchEntry, AnimationType.Opacity, 0)
+                new ViewTransition(Header, AnimationType.Opacity, 0.01, animationSpeed),
+                new ViewTransition(SearchEntry, AnimationType.Opacity, 0.01, animationSpeed),
+                new ViewTransition(SettingsIcon, AnimationType.Layout, settingsRectCollapsed, animationSpeed),
+                new ViewTransition(SearchIcon, AnimationType.Layout, searchRectCollapsed, animationSpeed),
+                new ViewTransition(SearchBackground, AnimationType.Layout, searchBackgroundCollapsedRect, animationSpeed),
+                new ViewTransition(ScrollContainer, AnimationType.Layout, scrollContainerRectCollapsed, animationSpeed)
             });
         }
 

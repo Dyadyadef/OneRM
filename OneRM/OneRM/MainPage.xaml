@@ -95,7 +95,7 @@
             <FlexLayout
                 BindableLayout.ItemsSource="{Binding Exercises}"
                 Direction="Column"
-                HeightRequest="450"
+                HeightRequest="1300"
                 HorizontalOptions="Center"
                 Wrap="Wrap">
                 <BindableLayout.ItemTemplate>
