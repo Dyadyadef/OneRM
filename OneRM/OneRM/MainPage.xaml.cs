@@ -26,12 +26,33 @@ namespace OneRM
         Storyboard _storyboard = new Storyboard();
 
         const int margin = 20;
-
+        const int animationSpeed = 250;
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            SizeChanged += MainPage_SizeChanged;
+            ScrollContainer.Scrolled += ScrollContainer_Scrolled;
         }
+
+        private async void ScrollContainer_Scrolled(object sender, ScrolledEventArgs e)
+        {
+            if ((e.ScrollY > 0) && (CurrentState != States.SearchHidden))
+            {
+                _storyboard.Go(States.SearchHidden);
+                CurrentState = States.SearchHidden;
+                ScrollContainer.IsEnabled = false;
+                await Task.Delay(animationSpeed);
+                ScrollContainer.IsEnabled = true;
+            }
+            else if ((e.ScrollY == 0) && (CurrentState != States.SearchExpanded))
+            {
+                _storyboard.Go(States.SearchExpanded);
+                CurrentState = States.SearchExpanded;
+                ScrollContainer.IsEnabled = false;
+                await Task.Delay(animationSpeed);
+                ScrollContainer.IsEnabled = true;
+            }
+        }
+
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
@@ -162,6 +183,23 @@ namespace OneRM
         {
             PancakeView element = sender as PancakeView;
 
+            var yScroll = ScrollContainer.ScrollY;
+
+            Rectangle rect = new Rectangle(
+                x: ScrollContainer.X + element.X,
+                y: ScrollContainer.Y + element.Y - yScroll,
+                width: element.Width,
+                height: element.Height);
+            AbsoluteLayout.SetLayoutBounds(AnimationTest, rect);
+
+            var destRect = new Rectangle(
+                x: (this.Width / 2) - (element.Width / 2),
+                y: 40,
+                width: element.Width,
+                height: element.Height);
+
+            await AnimationTest.LayoutTo(destRect, animationSpeed * 2, Easing.SinInOut);
+            await AnimationTest.LayoutTo(this.Bounds.Inflate(50, 50), animationSpeed * 2, Easing.SinInOut);
         }
     }
 }
