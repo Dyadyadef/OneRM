@@ -105,6 +105,9 @@
                             CornerRadius="20"
                             HeightRequest="{Binding IsFeatured, Converter={StaticResource FeaturedHeightConverter}}"
                             WidthRequest="160">
+                            <pancake:PancakeView.GestureRecognizers>
+                                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                            </pancake:PancakeView.GestureRecognizers>
                             <Grid>
                                 <BoxView
                                     CornerRadius="0, 0, 20, 0"
@@ -163,5 +166,12 @@
                 </BindableLayout.ItemTemplate>
             </FlexLayout>
         </ScrollView>
+
+        <BoxView
+            x:Name="AnimationTest"
+            BackgroundColor="Red"
+            CornerRadius="10"
+            Opacity=".5" />
+
     </AbsoluteLayout>
 </ContentPage>

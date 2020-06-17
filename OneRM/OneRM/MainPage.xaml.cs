@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Xamarin.Forms;
+using Xamarin.Forms.PancakeView;
 
 namespace OneRM
 {
@@ -25,34 +26,12 @@ namespace OneRM
         Storyboard _storyboard = new Storyboard();
 
         const int margin = 20;
-        const int animationSpeed = 250;
 
         protected override void OnAppearing()
         {
             base.OnAppearing();
-            ScrollContainer.Scrolled += ScrollContainer_Scrolled;
+            SizeChanged += MainPage_SizeChanged;
         }
-
-        private async void ScrollContainer_Scrolled(object sender, ScrolledEventArgs e)
-        {
-            if ((e.ScrollY > 0) && (CurrentState != States.SearchHidden))
-            {
-                _storyboard.Go(States.SearchHidden);
-                CurrentState = States.SearchHidden;
-                ScrollContainer.IsEnabled = false;
-                await Task.Delay(animationSpeed);
-                ScrollContainer.IsEnabled = true;
-            }
-            else if ((e.ScrollY == 0) && (CurrentState != States.SearchExpanded))
-            {
-                _storyboard.Go(States.SearchExpanded);
-                CurrentState = States.SearchExpanded;
-                ScrollContainer.IsEnabled = false;
-                await Task.Delay(animationSpeed);
-                ScrollContainer.IsEnabled = true;
-            }
-        }
-
         protected override void OnDisappearing()
         {
             base.OnDisappearing();
@@ -177,6 +156,12 @@ namespace OneRM
 
             _storyboard.Go(newState);
             CurrentState = newState;
+        }
+
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            PancakeView element = sender as PancakeView;
+
         }
     }
 }
