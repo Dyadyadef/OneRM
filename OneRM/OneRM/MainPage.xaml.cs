@@ -181,25 +181,34 @@ namespace OneRM
 
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            PancakeView element = sender as PancakeView;
+            // the user has tapped on an element
+            View element = sender as View;
 
+            // get set the binding context to the select cell
+            FakeExerciseCell.BindingContext = element.BindingContext;
+            FakeExerciseCell.IsVisible = true;
+
+            // set the layout to the same position
             var yScroll = ScrollContainer.ScrollY;
-
             Rectangle rect = new Rectangle(
                 x: ScrollContainer.X + element.X,
                 y: ScrollContainer.Y + element.Y - yScroll,
                 width: element.Width,
                 height: element.Height);
-            AbsoluteLayout.SetLayoutBounds(AnimationTest, rect);
+            AbsoluteLayout.SetLayoutBounds(FakeExerciseCell, rect);
 
-            var destRect = new Rectangle(
-                x: (this.Width / 2) - (element.Width / 2),
-                y: 40,
-                width: element.Width,
-                height: element.Height);
+            // hide the cell we clicked on
+            element.Opacity = 0.01;
+            await FakeExerciseCell.ExpandToFill(this.Bounds);
+            element.Opacity = 1;
+            // redisplay
 
-            await AnimationTest.LayoutTo(destRect, animationSpeed * 2, Easing.SinInOut);
-            await AnimationTest.LayoutTo(this.Bounds.Inflate(50, 50), animationSpeed * 2, Easing.SinInOut);
+        }
+
+        private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
+        {
+            ((View)sender).IsVisible = false;
+
         }
     }
 }

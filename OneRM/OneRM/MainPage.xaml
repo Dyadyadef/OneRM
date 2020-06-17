@@ -3,6 +3,7 @@
     x:Class="OneRM.MainPage"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:OneRM.Controls"
     xmlns:converters="clr-namespace:OneRM.Converter"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
@@ -17,7 +18,6 @@
 
     <ContentPage.Resources>
         <ResourceDictionary>
-            <!--<Color x:Key="ButtonBackgroundColor">#F5F9FA</Color>-->
             <Color x:Key="ButtonBackgroundColor">#F5F9FA</Color>
             <Color x:Key="TextColor">#313643</Color>
 
@@ -99,79 +99,21 @@
                 Wrap="Wrap">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
-                        <pancake:PancakeView
-                            Margin="10"
-                            BackgroundColor="{Binding HeroColor}"
-                            CornerRadius="20"
-                            HeightRequest="{Binding IsFeatured, Converter={StaticResource FeaturedHeightConverter}}"
-                            WidthRequest="160">
-                            <pancake:PancakeView.GestureRecognizers>
+                        <controls:ExerciseDisplay HeightRequest="{Binding IsFeatured, Converter={StaticResource FeaturedHeightConverter}}">
+                            <controls:ExerciseDisplay.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
-                            </pancake:PancakeView.GestureRecognizers>
-                            <Grid>
-                                <BoxView
-                                    CornerRadius="0, 0, 20, 0"
-                                    HeightRequest="40"
-                                    HorizontalOptions="End"
-                                    Opacity=".5"
-                                    VerticalOptions="Start"
-                                    WidthRequest="40"
-                                    Color="White" />
-                                <Label
-                                    FontSize="20"
-                                    HeightRequest="40"
-                                    HorizontalOptions="End"
-                                    HorizontalTextAlignment="Center"
-                                    Text="+"
-                                    TextColor="White"
-                                    VerticalOptions="Start"
-                                    VerticalTextAlignment="Center"
-                                    WidthRequest="40" />
-                                <StackLayout Orientation="Vertical" Spacing="0">
-                                    <Label
-                                        Margin="10,10,0,0"
-                                        FontAttributes="Bold"
-                                        FontSize="16"
-                                        Style="{StaticResource HeaderFontMedium}"
-                                        Text="{Binding Name}"
-                                        TextColor="White" />
-                                    <StackLayout
-                                        Margin="10,0"
-                                        Padding="0"
-                                        Orientation="Horizontal"
-                                        Spacing="0">
-                                        <Label
-                                            FontSize="40"
-                                            Text="{Binding Weight}"
-                                            TextColor="White"
-                                            VerticalOptions="Start"
-                                            VerticalTextAlignment="Start" />
-                                        <Label
-                                            Margin="3"
-                                            Text="кг"
-                                            TextColor="White"
-                                            TranslationY="10"
-                                            VerticalOptions="Start" />
-                                    </StackLayout>
-                                </StackLayout>
-                                <Image
-                                    HorizontalOptions="End"
-                                    Source="{Binding ImageUrl}"
-                                    TranslationX="40"
-                                    TranslationY="40"
-                                    VerticalOptions="End" />
-                            </Grid>
-                        </pancake:PancakeView>
+                            </controls:ExerciseDisplay.GestureRecognizers>
+                        </controls:ExerciseDisplay>
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>
             </FlexLayout>
         </ScrollView>
 
-        <BoxView
-            x:Name="AnimationTest"
-            BackgroundColor="Red"
-            CornerRadius="10"
-            Opacity=".5" />
+        <controls:ExerciseDisplay x:Name="FakeExerciseCell" IsVisible="false">
+            <controls:ExerciseDisplay.GestureRecognizers>
+                <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" />
+            </controls:ExerciseDisplay.GestureRecognizers>
+        </controls:ExerciseDisplay>
 
     </AbsoluteLayout>
 </ContentPage>
