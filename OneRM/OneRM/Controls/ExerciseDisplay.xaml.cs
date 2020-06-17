@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -17,7 +18,35 @@ namespace OneRM.Controls
             InitializeComponent();
         }
 
-        const Int32 animationSpeed = 800;
+        public static readonly BindableProperty ImageOffsetYProperty =
+            BindableProperty.Create(nameof(ImageOffsetY), typeof(int), typeof(ExerciseDisplay), 0);
+
+        public static readonly BindableProperty ImageOffsetXProperty =
+            BindableProperty.Create(nameof(ImageOffsetX), typeof(int), typeof(ExerciseDisplay), 0);
+
+        public int ImageOffsetY
+        {
+            get => (int)GetValue(ImageOffsetYProperty);
+            set => SetValue(ImageOffsetYProperty, value);
+        }
+
+        public int ImageOffsetX
+        {
+            get => (int)GetValue(ImageOffsetXProperty);
+            set => SetValue(ImageOffsetXProperty, value);
+        }
+
+        protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            base.OnPropertyChanged(propertyName);
+
+            if (propertyName == ImageOffsetYProperty.PropertyName)
+                ExerciseImage.TranslationY = ImageOffsetY;
+            if (propertyName == ImageOffsetXProperty.PropertyName)
+                ExerciseImage.TranslationX = ImageOffsetX;
+        }
+
+        const Int32 animationSpeed = 300;
         internal async Task ExpandToFill(Rectangle bounds)
         {
             // set the initial state

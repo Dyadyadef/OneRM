@@ -26,6 +26,16 @@
                 FalseString="170"
                 TrueString="240" />
 
+            <converters:BoolToStringConverter
+                x:Key="FeaturedOffsetYConverter"
+                FalseString="40"
+                TrueString="100" />
+
+            <converters:BoolToStringConverter
+                x:Key="FeaturedOffsetXConverter"
+                FalseString="0"
+                TrueString="60" />
+
             <Style x:Key="HeaderFontLight" TargetType="Label">
                 <Setter Property="FontFamily" Value="{StaticResource MontserratLight}" />
                 <Setter Property="FontSize" Value="28" />
@@ -99,7 +109,10 @@
                 Wrap="Wrap">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
-                        <controls:ExerciseDisplay HeightRequest="{Binding IsFeatured, Converter={StaticResource FeaturedHeightConverter}}">
+                        <controls:ExerciseDisplay
+                            HeightRequest="{Binding IsFeatured, Converter={StaticResource FeaturedHeightConverter}}"
+                            ImageOffsetX="{Binding IsFeatured, Converter={StaticResource FeaturedOffsetXConverter}}"
+                            ImageOffsetY="{Binding IsFeatured, Converter={StaticResource FeaturedOffsetYConverter}}">
                             <controls:ExerciseDisplay.GestureRecognizers>
                                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                             </controls:ExerciseDisplay.GestureRecognizers>
