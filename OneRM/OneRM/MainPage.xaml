@@ -85,7 +85,6 @@
             x:Name="SettingsIcon"
             Padding="14"
             AbsoluteLayout.LayoutBounds="340, 200, 48, 48"
-            BackgroundColor="{StaticResource ButtonBackgroundColor}"
             Source="settings_icon"
             Style="{StaticResource ButtonStyle}" />
 
@@ -95,7 +94,7 @@
             <FlexLayout
                 BindableLayout.ItemsSource="{Binding Exercises}"
                 Direction="Column"
-                HeightRequest="450"
+                HeightRequest="1300"
                 HorizontalOptions="Center"
                 Wrap="Wrap">
                 <BindableLayout.ItemTemplate>
