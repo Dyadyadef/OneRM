@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OneRM.Controls;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -182,10 +183,12 @@ namespace OneRM
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             // the user has tapped on an element
-            View element = sender as View;
+            ExerciseDisplay element = sender as ExerciseDisplay;
 
-            // get set the binding context to the select cell
+            // set the binding context to the select cell
             FakeExerciseCell.BindingContext = element.BindingContext;
+            FakeExerciseCell.ImageOffsetX = element.ImageOffsetX;
+            FakeExerciseCell.ImageOffsetY = element.ImageOffsetY;
             FakeExerciseCell.IsVisible = true;
 
             // set the layout to the same position

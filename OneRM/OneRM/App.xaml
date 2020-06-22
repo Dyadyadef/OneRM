@@ -9,6 +9,14 @@
     mc:Ignorable="d">
     <Application.Resources>
         <ResourceDictionary>
+            <OnPlatform x:Key="FontAwesome5FreeRegular" x:TypeArguments="x:String">
+                <On Platform="iOS" Value="FontAwesome5Free-Regular" />
+                <On Platform="Android" Value="fas.otf#Regular" />
+            </OnPlatform>
+            <OnPlatform x:Key="FontAwesome5FreeSolid" x:TypeArguments="x:String">
+                <On Platform="iOS" Value="FontAwesome5Free-Solid" />
+                <On Platform="Android" Value="fas.otf#Solid" />
+            </OnPlatform>
             <OnPlatform x:Key="MontserratMedium" x:TypeArguments="x:String">
                 <On Platform="iOS" Value="Montserrat-Medium" />
                 <On Platform="Android" Value="Montserrat-Medium.ttf#Regular" />
@@ -38,6 +46,9 @@
             <Style x:Key="ButtonStyle" TargetType="ImageButton">
                 <Setter Property="BackgroundColor" Value="{StaticResource ButtonBackgroundColor}" />
                 <Setter Property="CornerRadius" Value="14" />
+            </Style>
+            <Style TargetType="Grid">
+                <Setter Property="RowSpacing" Value="0" />
             </Style>
         </ResourceDictionary>
     </Application.Resources>

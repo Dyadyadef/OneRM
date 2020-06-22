@@ -33,7 +33,7 @@
 
             <converters:BoolToStringConverter
                 x:Key="FeaturedOffsetXConverter"
-                FalseString="0"
+                FalseString="60"
                 TrueString="60" />
 
             <Style x:Key="HeaderFontLight" TargetType="Label">
@@ -127,6 +127,8 @@
                 <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" />
             </controls:ExerciseDisplay.GestureRecognizers>
         </controls:ExerciseDisplay>
+
+        <controls:ExerciseDisplayPopover AbsoluteLayout.LayoutBounds="0,0,1,1" AbsoluteLayout.LayoutFlags="All" />
 
     </AbsoluteLayout>
 </ContentPage>

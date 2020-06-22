@@ -16,7 +16,7 @@ namespace OneRM.ViewModels
                 {
                     Name = "Присед",
                     HeroColor = "#96C9F8",
-                    ImageUrl = "blue_moss",
+                    ImageUrl = "icon_barbel", //blue_moss
                     Weight = 0,
                     IsFeatured = true
                 },

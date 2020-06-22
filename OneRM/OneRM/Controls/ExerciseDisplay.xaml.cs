@@ -46,7 +46,7 @@ namespace OneRM.Controls
                 ExerciseImage.TranslationX = ImageOffsetX;
         }
 
-        const Int32 animationSpeed = 300;
+        const Int32 animationSpeed = 500;
         internal async Task ExpandToFill(Rectangle bounds)
         {
             // set the initial state
@@ -54,11 +54,14 @@ namespace OneRM.Controls
             AddButton.Opacity = 1;
             NameLabel.Opacity = 1;
             PriceLabel.Opacity = 1;
+            ExerciseImage.Scale = 1;
+            ExerciseImage.TranslationX = ImageOffsetX;
+            ExerciseImage.TranslationY = ImageOffsetY;
 
             // destination rect
             var destRect = new Rectangle(
                 x: (bounds.Width / 2) - (this.Width / 2),
-                y: 40,
+                y: 50,
                 width: this.Width,
                 height: this.Height);
 
@@ -67,7 +70,14 @@ namespace OneRM.Controls
             _ = NameLabel.FadeTo(0, animationSpeed / 2);
             _ = PriceLabel.FadeTo(0, animationSpeed / 2);
 
+            _ = ExerciseImage.TranslateTo(0, ExerciseImage.TranslationY, animationSpeed * 2);
             await this.LayoutTo(destRect, animationSpeed * 2, Easing.SinInOut);
+
+
+            _ = ExerciseImage.ScaleTo(1.5, animationSpeed * 2);
+            _ =ExerciseImage.TranslateTo(0, 100, animationSpeed * 2);
+
+
             await this.LayoutTo(bounds.Inflate(50, 50), animationSpeed * 2, Easing.SinInOut);
         }
     }
