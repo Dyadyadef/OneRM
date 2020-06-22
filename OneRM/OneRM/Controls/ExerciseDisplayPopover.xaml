@@ -159,6 +159,22 @@
                 </StackLayout>
 
             </Grid>
+
+            <StackLayout Grid.Row="3">
+                <Label Text="Подробные рассчеты и тренироки." />
+                <Label>
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span Style="{StaticResource BodyFontMedium}" Text="Size: " />
+                            <Span Style="{StaticResource BodyFontLight}" Text="150x150 mm." />
+                            <Span Text=" " />
+                            <Span Style="{StaticResource BodyFontMedium}" Text="Diameter: " />
+                            <Span Style="{StaticResource BodyFontLight}" Text="190mm" />
+                        </FormattedString>
+                    </Label.FormattedText>
+                </Label>
+            </StackLayout>
+
         </Grid>
     </Grid>
 </ContentView>
