@@ -1,4 +1,5 @@
 ﻿using OneRM.Extensions;
+using OneRM.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,13 +24,14 @@ namespace OneRM.Controls
             // setup for animation
             this.Opacity = 1;
             ExercisePopoverGrid.Opacity = 0;
+            AddToCartButton.ScaleX = 0;
             BackgroundPanel.TranslationY = BackgroundPanel.Height;
 
             // animate up the white background
             _ = BackgroundPanel.TranslateTo(0, 0, 200);
 
             // animate int the Details
-            _ = ExercisePopoverGrid.FadeTo(1, 500);
+            await ExercisePopoverGrid.FadeTo(1, 500);
 
             // aminate the button
             Animation animation = new Animation();
@@ -44,6 +46,30 @@ namespace OneRM.Controls
             ((MainPage)this.GetParentPage()).HidePopover();
 
             // hide the popover
+        }
+
+        int quantityCount = 1;
+        private void DecreaseQuantity_Clicked(object sender, EventArgs e)
+        {
+            quantityCount--;
+            if (quantityCount < 1) quantityCount = 1;
+            UpdateDisplay();
+        }
+
+        private void UpdateDisplay()
+        {
+            QuantityDisplay.Text = quantityCount.ToString();
+
+            // Вес 
+            var unitPrice = ((MainViewModel)this.BindingContext).SelectedExercise.Weight;
+            // Рассчет веса (пока заглушка с ценой)
+            QuantityDisplayValue.Text = (unitPrice * quantityCount).ToString();
+        }
+
+        private void IncreaseQuantity_Clicked(object sender, EventArgs e)
+        {
+            quantityCount++;
+            UpdateDisplay();
         }
     }
 }

@@ -28,7 +28,7 @@ namespace OneRM.ViewModels
                     Name = "Присед",
                     HeroColor = "#96C9F8",
                     ImageUrl = "icon_barbel", //blue_moss
-                    Weight = 0,
+                    Weight = 20,
                     IsFeatured = true
                 },
                 new ExerciseViewModel()
@@ -36,7 +36,7 @@ namespace OneRM.ViewModels
                     Name = "Становая",
                     HeroColor = "#FFCA81",
                     ImageUrl = "orange_moss",
-                    Weight = 0,
+                    Weight = 20,
                     IsFeatured = false
                 },
                 new ExerciseViewModel()
@@ -44,7 +44,7 @@ namespace OneRM.ViewModels
                     Name = "Румынская",
                     HeroColor = "#D69DFB",
                     ImageUrl = "lavender_moss",
-                    Weight = 0,
+                    Weight = 20,
                     IsFeatured = false
                 },
                 new ExerciseViewModel()
@@ -52,7 +52,7 @@ namespace OneRM.ViewModels
                     Name = "Жим",
                     HeroColor = "#74D59E",
                     ImageUrl = "green_moss",
-                    Weight = 0,
+                    Weight = 20,
                     IsFeatured = true
                 },
                 new ExerciseViewModel()
@@ -60,7 +60,7 @@ namespace OneRM.ViewModels
                     Name = "Присед",
                     HeroColor = "#96C9F8",
                     ImageUrl = "blue_moss",
-                    Weight = 0,
+                    Weight = 20,
                     IsFeatured = true
                 },
                 new ExerciseViewModel()
@@ -68,7 +68,7 @@ namespace OneRM.ViewModels
                     Name = "Становая",
                     HeroColor = "#FFCA81",
                     ImageUrl = "orange_moss",
-                    Weight = 0,
+                    Weight = 20,
                     IsFeatured = false
                 },
                 new ExerciseViewModel()
@@ -76,7 +76,7 @@ namespace OneRM.ViewModels
                     Name = "Румынская",
                     HeroColor = "#D69DFB",
                     ImageUrl = "lavender_moss",
-                    Weight = 0,
+                    Weight = 20,
                     IsFeatured = false
                 },
                 new ExerciseViewModel()
@@ -84,7 +84,7 @@ namespace OneRM.ViewModels
                     Name = "Жим",
                     HeroColor = "#74D59E",
                     ImageUrl = "green_moss",
-                    Weight = 0,
+                    Weight = 20,
                     IsFeatured = true
                 },
                  new ExerciseViewModel()
@@ -92,7 +92,7 @@ namespace OneRM.ViewModels
                     Name = "Присед",
                     HeroColor = "#96C9F8",
                     ImageUrl = "blue_moss",
-                    Weight = 0,
+                    Weight = 20,
                     IsFeatured = true
                 },
                 new ExerciseViewModel()
@@ -100,7 +100,7 @@ namespace OneRM.ViewModels
                     Name = "Становая",
                     HeroColor = "#FFCA81",
                     ImageUrl = "orange_moss",
-                    Weight = 0,
+                    Weight = 20,
                     IsFeatured = false
                 },
                 new ExerciseViewModel()
@@ -108,7 +108,7 @@ namespace OneRM.ViewModels
                     Name = "Румынская",
                     HeroColor = "#D69DFB",
                     ImageUrl = "lavender_moss",
-                    Weight = 0,
+                    Weight = 20,
                     IsFeatured = false
                 },
                  new ExerciseViewModel()
@@ -116,7 +116,7 @@ namespace OneRM.ViewModels
                     Name = "Жим",
                     HeroColor = "#74D59E",
                     ImageUrl = "green_moss",
-                    Weight = 0,
+                    Weight = 20,
                     IsFeatured = true
                 }
             };

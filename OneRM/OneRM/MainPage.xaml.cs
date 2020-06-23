@@ -1,4 +1,5 @@
 ﻿using OneRM.Controls;
+using OneRM.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -191,6 +192,10 @@ namespace OneRM
             FakeExerciseCell.ImageOffsetY = element.ImageOffsetY;
             FakeExerciseCell.Opacity = 1;
             FakeExerciseCell.IsVisible = true;
+
+            // set the selected item
+            ((MainViewModel)this.BindingContext).SelectedExercise = element.BindingContext as ExerciseViewModel;
+            
 
             // set the layout to the same position
             var yScroll = ScrollContainer.ScrollY;

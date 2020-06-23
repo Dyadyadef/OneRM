@@ -60,7 +60,7 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
 
-            <Label Style="{StaticResource HeaderFontLight}" Text="Lavender" />
+            <Label Style="{StaticResource HeaderFontLight}" Text="{Binding SelectedExercise.Name}" />
 
             <!--  Quantity and Cost row  -->
             <Grid Grid.Row="1">
@@ -76,22 +76,63 @@
                         <ColumnDefinition Width="*" />
                         <ColumnDefinition Width="*" />
                     </Grid.ColumnDefinitions>
-                    <Button Text="-" />
+                    <Button
+                        BackgroundColor="{StaticResource ButtonBackgroundColor}"
+                        Clicked="DecreaseQuantity_Clicked"
+                        CornerRadius="14"
+                        FontSize="20"
+                        HeightRequest="48"
+                        HorizontalOptions="Center"
+                        Text="–"
+                        VerticalOptions="Center"
+                        WidthRequest="48" />
                     <Label
+                        x:Name="QuantityDisplay"
                         Grid.Column="1"
                         HorizontalOptions="Center"
                         Style="{StaticResource HeaderFontLight}"
                         Text="1"
                         VerticalOptions="Center" />
-                    <Button Grid.Column="2" Text="+" />
+                    <Button
+                        Grid.Column="2"
+                        BackgroundColor="{StaticResource ButtonBackgroundColor}"
+                        Clicked="IncreaseQuantity_Clicked"
+                        CornerRadius="14"
+                        FontSize="20"
+                        HeightRequest="48"
+                        HorizontalOptions="Center"
+                        Text="＋"
+                        VerticalOptions="Center"
+                        WidthRequest="48" />
                 </Grid>
 
-                <Label
+                <StackLayout
+                    x:Name="PriceLabel"
+                    Grid.Column="1"
+                    Margin="10,0"
+                    HorizontalOptions="Center"
+                    Orientation="Horizontal"
+                    Spacing="4"
+                    VerticalOptions="Center">
+                    <Label
+                        x:Name="QuantityDisplayValue"
+                        Style="{StaticResource HeaderFontLight}"
+                        Text="19"
+                        VerticalOptions="Start"
+                        VerticalTextAlignment="Start" />
+                    <Label
+                        FontSize="14"
+                        Text="кг"
+                        TranslationY="4"
+                        VerticalOptions="Start" />
+                </StackLayout>
+
+                <!--<Label
                     Grid.Column="1"
                     HorizontalOptions="Center"
                     Style="{StaticResource HeaderFontLight}"
                     Text="50кг"
-                    VerticalOptions="Center" />
+                    VerticalOptions="Center" />-->
 
             </Grid>
 
