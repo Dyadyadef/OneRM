@@ -1,4 +1,5 @@
-﻿using System;
+﻿using OneRM.Extensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,34 @@ namespace OneRM.Controls
         public ExerciseDisplayPopover()
         {
             InitializeComponent();
+        }
+
+        internal async Task Expand()
+        {
+            // setup for animation
+            this.Opacity = 1;
+            ExercisePopoverGrid.Opacity = 0;
+            BackgroundPanel.TranslationY = BackgroundPanel.Height;
+
+            // animate up the white background
+            _ = BackgroundPanel.TranslateTo(0, 0, 200);
+
+            // animate int the Details
+            _ = ExercisePopoverGrid.FadeTo(1, 500);
+
+            // aminate the button
+            Animation animation = new Animation();
+            animation.Add(0, 1, new Animation(t => AddToCartButton.ScaleX = t, 0, 1, Easing.SpringOut));
+            animation.Commit(this, "ButtonAnimation", 16, 500);
+
+        }
+
+        private async void ImageButton_Clicked(object sender, EventArgs e)
+        {
+            // get the parent page
+            ((MainPage)this.GetParentPage()).HidePopover();
+
+            // hide the popover
         }
     }
 }

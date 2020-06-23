@@ -3,9 +3,11 @@
     x:Class="OneRM.Controls.ExerciseDisplayPopover"
     xmlns="http://xamarin.com/schemas/2014/forms"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:controls="clr-namespace:OneRM.Controls"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:dave="clr-namespace:com.ptdave.xamarin.FontHelpers;assembly=com.ptdave.xamarin"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
     mc:Ignorable="d">
 
     <Grid>
@@ -15,18 +17,19 @@
             <RowDefinition Height="Auto" />
 
         </Grid.RowDefinitions>
-        <BoxView Grid.RowSpan="3" BackgroundColor="Purple" />
+
         <BoxView
+            x:Name="BackgroundPanel"
             Grid.Row="2"
             BackgroundColor="White"
             CornerRadius="30,30,0,0"
-            HeightRequest="300"
-            VerticalOptions="End" />
+            VerticalOptions="Fill" />
 
         <ImageButton
             Margin="20"
             Padding="9"
             BackgroundColor="Transparent"
+            Clicked="ImageButton_Clicked"
             HeightRequest="48"
             HorizontalOptions="Start"
             Source="back_arrow"
@@ -44,6 +47,7 @@
             WidthRequest="48" />
 
         <Grid
+            x:Name="ExercisePopoverGrid"
             Grid.Row="2"
             Margin="20"
             RowSpacing="20"
@@ -98,65 +102,22 @@
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
 
-                <StackLayout Orientation="Vertical">
-                    <Label VerticalTextAlignment="Center">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span
-                                    FontFamily="{StaticResource FontAwesome5FreeSolid}"
-                                    FontSize="10"
-                                    Text="{Static dave:FAS.Tint}"
-                                    TextColor="#AAAAAA" />
-                                <Span Text=" " />
-                                <Span FontSize="10" TextColor="#AAAAAA">Humidity</Span>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                    <Label
-                        FontSize="12"
-                        Style="{StaticResource HeaderFontMedium}"
-                        Text="50-75%" />
-                </StackLayout>
+                <controls:InfoPanel
+                    Title="Light"
+                    TitleIcon="{Static dave:FAS.Dumbbell}"
+                    Value="30%" />
 
-                <StackLayout Grid.Column="1" Orientation="Vertical">
-                    <Label VerticalTextAlignment="Center">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span
-                                    FontFamily="{StaticResource FontAwesome5FreeSolid}"
-                                    FontSize="10"
-                                    Text="{Static dave:FAS.Sun}"
-                                    TextColor="#AAAAAA" />
-                                <Span Text=" " />
-                                <Span FontSize="10" TextColor="#AAAAAA">Light</Span>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                    <Label
-                        FontSize="12"
-                        Style="{StaticResource HeaderFontMedium}"
-                        Text="50-75%" />
-                </StackLayout>
+                <controls:InfoPanel
+                    Title="Medium"
+                    Grid.Column="1"
+                    TitleIcon="{Static dave:FAS.Dumbbell}"
+                    Value="60%" />
 
-                <StackLayout Grid.Column="2" Orientation="Vertical">
-                    <Label VerticalTextAlignment="Center">
-                        <Label.FormattedText>
-                            <FormattedString>
-                                <Span
-                                    FontFamily="{StaticResource FontAwesome5FreeSolid}"
-                                    FontSize="10"
-                                    Text="{Static dave:FAS.ThermometerEmpty}"
-                                    TextColor="#AAAAAA" />
-                                <Span Text=" " />
-                                <Span FontSize="10" TextColor="#AAAAAA">Humidity</Span>
-                            </FormattedString>
-                        </Label.FormattedText>
-                    </Label>
-                    <Label
-                        FontSize="12"
-                        Style="{StaticResource HeaderFontMedium}"
-                        Text="50-75%" />
-                </StackLayout>
+                <controls:InfoPanel
+                    Title="High"
+                    Grid.Column="2"
+                    TitleIcon="{Static dave:FAS.Dumbbell}"
+                    Value="90%" />
 
             </Grid>
 
@@ -174,6 +135,21 @@
                     </Label.FormattedText>
                 </Label>
             </StackLayout>
+
+            <pancake:PancakeView
+                x:Name="AddToCartButton"
+                Grid.Row="4"
+                BackgroundColor="#FB9B63"
+                CornerRadius="10"
+                HeightRequest="60">
+                <Label
+                    FontSize="20"
+                    HorizontalOptions="Center"
+                    Text="Посмотреть"
+                    TextColor="White"
+                    VerticalOptions="Center" />
+
+            </pancake:PancakeView>
 
         </Grid>
     </Grid>

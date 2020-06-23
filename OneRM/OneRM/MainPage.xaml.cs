@@ -189,6 +189,7 @@ namespace OneRM
             FakeExerciseCell.BindingContext = element.BindingContext;
             FakeExerciseCell.ImageOffsetX = element.ImageOffsetX;
             FakeExerciseCell.ImageOffsetY = element.ImageOffsetY;
+            FakeExerciseCell.Opacity = 1;
             FakeExerciseCell.IsVisible = true;
 
             // set the layout to the same position
@@ -204,9 +205,31 @@ namespace OneRM
             element.Opacity = 0.01;
             await FakeExerciseCell.ExpandToFill(this.Bounds);
             element.Opacity = 1;
-            // redisplay
 
+            // display the page popover
+            PagePopover.Opacity = 0;
+            PagePopover.IsVisible = true;
+            await PagePopover.Expand();
         }
+
+        internal async void HidePopover()
+        {
+            // fade out the elements
+            await Task.WhenAll(
+                new Task[]
+                {
+                    FakeExerciseCell.FadeTo(0),
+                    PagePopover.FadeTo(0)
+                });
+
+
+            // hide our fake product cell
+            FakeExerciseCell.IsVisible = false;
+
+            // hide out Page poper
+            PagePopover.IsVisible = false;
+        }
+
 
         private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
         {

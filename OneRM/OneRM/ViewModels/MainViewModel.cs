@@ -8,6 +8,17 @@ namespace OneRM.ViewModels
     public class MainViewModel : BaseViewModel
     {
         public IList<ExerciseViewModel> Exercises { get; set; }
+
+        private ExerciseViewModel _selectedExercise;
+
+        public ExerciseViewModel SelectedExercise
+        {
+            get { return _selectedExercise; }
+            set { SetProperty(ref _selectedExercise, value); }
+        }
+
+
+
         public MainViewModel()
         {
             Exercises = new ObservableRangeCollection<ExerciseViewModel>()

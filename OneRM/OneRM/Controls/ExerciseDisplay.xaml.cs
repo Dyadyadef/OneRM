@@ -76,9 +76,9 @@ namespace OneRM.Controls
 
             _ = ExerciseImage.ScaleTo(1.5, animationSpeed * 2);
             _ =ExerciseImage.TranslateTo(0, 100, animationSpeed * 2);
-
-
+            Rectangle expandedBound = bounds.Inflate(50, 50);
             await this.LayoutTo(bounds.Inflate(50, 50), animationSpeed * 2, Easing.SinInOut);
+            AbsoluteLayout.SetLayoutBounds(this, expandedBound);
         }
     }
 }
