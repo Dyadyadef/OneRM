@@ -5,10 +5,148 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:d="http://xamarin.com/schemas/2014/forms/design"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d" >
-    
-    
-    
-    
-    
+    xmlns:pancake="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView"
+    xmlns:skia="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms"
+    xmlns:vm="clr-namespace:OneRM.ViewModels"
+    mc:Ignorable="d">
+
+    <ContentView.Resources>
+        <ResourceDictionary>
+            <Style
+                x:Key="ShoppingCartItemLabel"
+                BasedOn="{StaticResource BodyFontMedium}"
+                TargetType="Label">
+                <Setter Property="VerticalOptions" Value="Center" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Style" Value="{StaticResource BodyFontMedium}" />
+            </Style>
+        </ResourceDictionary>
+    </ContentView.Resources>
+
+
+    <Grid BackgroundColor="White">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+
+        <ImageButton
+            Margin="20"
+            Padding="9"
+            Clicked="ImageButton_Clicked"
+            HeightRequest="48"
+            HorizontalOptions="Start"
+            Source="back_arrow"
+            Style="{StaticResource ButtonStyle}"
+            VerticalOptions="Center"
+            WidthRequest="48" />
+
+        <StackLayout Grid.Row="1" Padding="20,0,20,20">
+            <Label Style="{StaticResource HeaderFontLight}" Text="Order Details" />
+            <skia:SKCanvasView
+                HeightRequest="30"
+                HorizontalOptions="Fill"
+                PaintSurface="SKCanvasView_PaintSurface" />
+        </StackLayout>
+
+        <BoxView
+            Grid.Row="2"
+            BackgroundColor="#75D59F"
+            CornerRadius="40,40,0,0" />
+
+        <Grid Grid.Row="2" Margin="30">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+
+            <Label
+                Style="{StaticResource HeaderFontMedium}"
+                Text="Shopping Cart"
+                TextColor="White" />
+
+
+            <CollectionView Grid.Row="1" ItemsSource="{Binding ShoppingCart.Items}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <Grid Margin="0,10,0,10">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="64" />
+                                <ColumnDefinition Width="50" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="40" />
+                                <ColumnDefinition Width="30" />
+                            </Grid.ColumnDefinitions>
+
+                            <pancake:PancakeView
+                                BackgroundColor="{Binding Exercise.HeroColor}"
+                                CornerRadius="10"
+                                HasShadow="True"
+                                HeightRequest="60"
+                                HorizontalOptions="Center"
+                                VerticalOptions="Center"
+                                WidthRequest="60">
+
+                                <Image Source="{Binding Exercise.ImageUrl}" />
+
+                            </pancake:PancakeView>
+
+                            <Label
+                                Grid.Column="1"
+                                HorizontalOptions="Center"
+                                Style="{StaticResource ShoppingCartItemLabel}"
+                                Text="{Binding Count, StringFormat='{0} x'}" />
+                            <Label
+                                Grid.Column="2"
+                                Style="{StaticResource ShoppingCartItemLabel}"
+                                Text="{Binding Exercise.Name}" />
+                            <Label
+                                Grid.Column="3"
+                                HorizontalOptions="End"
+                                Style="{StaticResource ShoppingCartItemLabel}"
+                                Text="{Binding Exercise.Weight, StringFormat='{0}Кг'}" />
+                            <Label
+                                Grid.Column="4"
+                                Padding="10"
+                                HorizontalOptions="Center"
+                                Style="{StaticResource ShoppingCartItemLabel}"
+                                Text="x">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding Source={RelativeSource AncestorType={x:Type vm:MainViewModel}}, Path=RemoveItemCommand}" CommandParameter="{Binding .}" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+            <Grid Grid.Row="2" Margin="0,20">
+                <Label
+                    FontSize="20"
+                    Style="{StaticResource BodyFontMedium}"
+                    Text="Total"
+                    TextColor="White" />
+            </Grid>
+
+            <pancake:PancakeView
+                x:Name="CheckOutButton"
+                Grid.Row="3"
+                BackgroundColor="White"
+                CornerRadius="10"
+                HasShadow="True"
+                HeightRequest="60">
+                <Label
+                    FontSize="20"
+                    HorizontalOptions="Center"
+                    Text="Посмотреть"
+                    TextColor="Black"
+                    VerticalOptions="Center" />
+
+            </pancake:PancakeView>
+        </Grid>
+    </Grid>
 </ContentView>

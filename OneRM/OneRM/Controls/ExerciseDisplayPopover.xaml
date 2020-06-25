@@ -15,7 +15,6 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
-
         </Grid.RowDefinitions>
 
         <BoxView
@@ -29,7 +28,7 @@
             Margin="20"
             Padding="9"
             BackgroundColor="Transparent"
-            Clicked="ImageButton_Clicked"
+            Clicked="BackArrowButton_Clicked"
             HeightRequest="48"
             HorizontalOptions="Start"
             Source="back_arrow"

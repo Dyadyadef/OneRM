@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows.Input;
 using MvvmHelpers;
+using MvvmHelpers.Commands;
 
 namespace OneRM.ViewModels
 {
@@ -18,6 +20,8 @@ namespace OneRM.ViewModels
         }
 
         public ShoppingCartViewModel ShoppingCart { get; set; }
+
+        public ICommand RemoveItemCommand { private set; get;}
 
         public MainViewModel()
         {
@@ -121,6 +125,14 @@ namespace OneRM.ViewModels
                 }
             };
             ShoppingCart = new ShoppingCartViewModel();
+
+            RemoveItemCommand = new Command<ShoppingCartItem>(i => RemoveItem(i));
+        }
+
+        private void RemoveItem(ShoppingCartItem i)
+        {
+            ShoppingCart.Items.Remove(i);
+
         }
     }
 }

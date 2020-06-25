@@ -40,7 +40,7 @@ namespace OneRM.Controls
 
         }
 
-        private async void ImageButton_Clicked(object sender, EventArgs e)
+        private void BackArrowButton_Clicked(object sender, EventArgs e)
         {
             // get the parent page
             ((MainPage)this.GetParentPage()).HidePopover();
