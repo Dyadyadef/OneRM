@@ -14,6 +14,10 @@
         CornerRadius="20"
         WidthRequest="160">
 
+        <pancake:PancakeView.GestureRecognizers>
+            <TapGestureRecognizer Tapped="TapExerciseGestureRecognizer_Tapped" />
+        </pancake:PancakeView.GestureRecognizers>
+
         <Grid>
             <BoxView
                 x:Name="AddBackground"
@@ -34,8 +38,16 @@
                 TextColor="White"
                 VerticalOptions="Start"
                 VerticalTextAlignment="Center"
-                WidthRequest="40" />
-            <StackLayout Orientation="Vertical" Spacing="0">
+                WidthRequest="40">
+                <Label.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapAddExerciseGestureRecognizer_Tapped" />
+                </Label.GestureRecognizers>
+            </Label>
+            <StackLayout
+                CascadeInputTransparent="True"
+                InputTransparent="True"
+                Orientation="Vertical"
+                Spacing="0">
                 <Label
                     x:Name="NameLabel"
                     Margin="10,10,0,0"
@@ -67,6 +79,7 @@
             <Image
                 x:Name="ExerciseImage"
                 HorizontalOptions="Center"
+                InputTransparent="True"
                 Source="{Binding ImageUrl}"
                 VerticalOptions="Start" />
         </Grid>

@@ -17,7 +17,7 @@ namespace OneRM.ViewModels
             set { SetProperty(ref _selectedExercise, value); }
         }
 
-
+        public ShoppingCartViewModel ShoppingCart { get; set; }
 
         public MainViewModel()
         {
@@ -120,6 +120,7 @@ namespace OneRM.ViewModels
                     IsFeatured = true
                 }
             };
+            ShoppingCart = new ShoppingCartViewModel();
         }
     }
 }

@@ -28,7 +28,7 @@ namespace OneRM
         Storyboard _storyboard = new Storyboard();
 
         const int margin = 20;
-        const int animationSpeed = 250;
+        const int animationSpeed = 150;
         protected override void OnAppearing()
         {
             base.OnAppearing();
@@ -240,6 +240,21 @@ namespace OneRM
         {
             ((View)sender).IsVisible = false;
 
+        }
+
+        private void ExerciseDisplay_AddToCartClicked(object sender, EventArgs e)
+        {
+            // selected exercise
+            ExerciseDisplay element = sender as ExerciseDisplay;
+            ExerciseViewModel item = element.BindingContext as ExerciseViewModel;
+
+            // add a shopping cart item
+            ((MainViewModel)this.BindingContext).ShoppingCart.IncrementOrder(item);
+        }
+
+        private void BasketIcon_Clicked(object sender, EventArgs e)
+        {
+            CartPopover.IsVisible = true;
         }
     }
 }

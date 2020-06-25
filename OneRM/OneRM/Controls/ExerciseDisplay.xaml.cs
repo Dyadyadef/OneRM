@@ -29,13 +29,11 @@ namespace OneRM.Controls
             get => (int)GetValue(ImageOffsetYProperty);
             set => SetValue(ImageOffsetYProperty, value);
         }
-
         public int ImageOffsetX
         {
             get => (int)GetValue(ImageOffsetXProperty);
             set => SetValue(ImageOffsetXProperty, value);
         }
-
         protected override void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             base.OnPropertyChanged(propertyName);
@@ -46,7 +44,10 @@ namespace OneRM.Controls
                 ExerciseImage.TranslationX = ImageOffsetX;
         }
 
-        const Int32 animationSpeed = 500;
+        public event EventHandler AddToCartClicked;
+        public event EventHandler ExerciseClicked;
+        
+        const Int32 animationSpeed = 300;
         internal async Task ExpandToFill(Rectangle bounds)
         {
             // set the initial state
@@ -79,6 +80,18 @@ namespace OneRM.Controls
             Rectangle expandedBound = bounds.Inflate(50, 50);
             await this.LayoutTo(bounds.Inflate(50, 50), animationSpeed * 2, Easing.SinInOut);
             AbsoluteLayout.SetLayoutBounds(this, expandedBound);
+        }
+
+        private void TapExerciseGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            EventHandler handler = ExerciseClicked;
+            handler?.Invoke(this, new EventArgs());
+        }
+
+        private void TapAddExerciseGestureRecognizer_Tapped(object sender, EventArgs e)
+        {
+            EventHandler handler = AddToCartClicked;
+            handler?.Invoke(this, new EventArgs());
         }
     }
 }
