@@ -5,7 +5,7 @@ using System.Text;
 
 namespace OneRM.ViewModels
 {
-    public class ShoppingCartItem : ObservableObject
+    public class ShoppingCartItem : ObservableObject, ICartItem
     {
         public ExerciseViewModel Exercise { get; set; }
         public int Count { get; set; }

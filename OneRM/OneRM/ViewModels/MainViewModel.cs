@@ -124,15 +124,17 @@ namespace OneRM.ViewModels
                     IsFeatured = true
                 }
             };
+            
             ShoppingCart = new ShoppingCartViewModel();
+            ShoppingCart.Items.Add(new FreightItem() { FreightCharge=15});
 
             RemoveItemCommand = new Command<ShoppingCartItem>(i => RemoveItem(i));
         }
 
         private void RemoveItem(ShoppingCartItem i)
         {
-            ShoppingCart.Items.Remove(i);
-
+            //ShoppingCart.Items.Remove(i);
+            ShoppingCart.RemoveItem(i);
         }
     }
 }

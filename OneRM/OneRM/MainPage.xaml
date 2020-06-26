@@ -72,7 +72,7 @@
             CornerRadius="7">
             <pancake:PancakeView.Triggers>
                 <DataTrigger
-                    Binding="{Binding ShoppingCart.Items.Count}"
+                    Binding="{Binding ShoppingCart.ItemCount}"
                     TargetType="pancake:PancakeView"
                     Value="0">
                     <Setter Property="IsVisible" Value="False" />
@@ -82,7 +82,7 @@
             <Label
                 FontSize="10"
                 HorizontalOptions="Center"
-                Text="{Binding ShoppingCart.Items.Count}"
+                Text="{Binding ShoppingCart.ItemCount}"
                 TextColor="White"
                 VerticalOptions="Center" />
         </pancake:PancakeView>

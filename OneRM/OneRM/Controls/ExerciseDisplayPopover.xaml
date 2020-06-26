@@ -125,14 +125,6 @@
                         TranslationY="4"
                         VerticalOptions="Start" />
                 </StackLayout>
-
-                <!--<Label
-                    Grid.Column="1"
-                    HorizontalOptions="Center"
-                    Style="{StaticResource HeaderFontLight}"
-                    Text="50кг"
-                    VerticalOptions="Center" />-->
-
             </Grid>
 
             <Grid Grid.Row="2">
