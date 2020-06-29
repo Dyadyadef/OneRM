@@ -37,7 +37,6 @@ namespace OneRM.Controls
             Animation animation = new Animation();
             animation.Add(0, 1, new Animation(t => AddToCartButton.ScaleX = t, 0, 1, Easing.SpringOut));
             animation.Commit(this, "ButtonAnimation", 16, 500);
-
         }
 
         private void BackArrowButton_Clicked(object sender, EventArgs e)

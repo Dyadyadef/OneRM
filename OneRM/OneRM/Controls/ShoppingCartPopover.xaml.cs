@@ -19,9 +19,9 @@ namespace OneRM.Controls
             InitializeComponent();
         }
 
-        private void ImageButton_Clicked(object sender, EventArgs e)
+        private async void ImageButton_Clicked(object sender, EventArgs e)
         {
-            this.IsVisible = false;
+            await Collapse();
         }
 
         private void SKCanvasView_PaintSurface(object sender, SkiaSharp.Views.Forms.SKPaintSurfaceEventArgs args)
@@ -80,6 +80,39 @@ namespace OneRM.Controls
                 );
 
             canvas.DrawCircle(new SKPoint(info.Width - margin, info.Height / 2), radius, circlePaint);
+        }
+
+        uint animationSpeed = 300;
+        internal async Task Expand()
+        {
+            // set our initial states
+            WhiteBackground.TranslationY = this.Height;
+            WhiteBackground.IsVisible = true;
+            GreenPanel.TranslationY = this.Height;
+            ShoppingCartDetails.Opacity = 0;
+            Header.Opacity = 0;
+            this.Opacity = 1;
+            this.IsVisible = true;
+            CheckOutButton.ScaleX = 0;
+
+            // expand the white panel (background)
+            await WhiteBackground.TranslateTo(0, 0, animationSpeed);
+
+            // expand the green panel (shopping cart list background)
+            _ = GreenPanel.TranslateTo(0, 0, animationSpeed);
+            _ = ShoppingCartDetails.FadeTo(1, animationSpeed * 2);
+            _ = Header.FadeTo(1, animationSpeed * 2);
+
+            // expand the button out
+            Animation animation = new Animation();
+            animation.Add(0, 1, new Animation(t => CheckOutButton.ScaleX = t, 0, 1, Easing.SpringOut));
+            animation.Commit(this, "ButtonAnimation", 16, 500);
+        }
+
+        internal async Task Collapse()
+        {
+            await this.FadeTo(0, animationSpeed);
+            this.IsVisible = false;
         }
     }
 }

@@ -137,25 +137,34 @@
     </ContentView.Resources>
 
 
-    <Grid BackgroundColor="White">
+    <Grid IsClippedToBounds="False">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
+        <BoxView
+            x:Name="WhiteBackground"
+            Grid.RowSpan="3"
+            IsVisible="False"
+            Color="White" />
+
         <ImageButton
             Margin="20"
             Padding="9"
+            BackgroundColor="Transparent"
             Clicked="ImageButton_Clicked"
             HeightRequest="48"
             HorizontalOptions="Start"
-            Source="back_arrow"
+            Source="back_arrow_black"
             Style="{StaticResource ButtonStyle}"
-            VerticalOptions="Center"
-            WidthRequest="48" />
+            VerticalOptions="Center" />
 
-        <StackLayout Grid.Row="1" Padding="20,0,20,20">
+        <StackLayout
+            x:Name="Header"
+            Grid.Row="1"
+            Padding="20,0,20,20">
             <Label Style="{StaticResource HeaderFontLight}" Text="Order Details" />
             <skia:SKCanvasView
                 HeightRequest="30"
@@ -164,11 +173,18 @@
         </StackLayout>
 
         <BoxView
+            x:Name="GreenPanel"
             Grid.Row="2"
             BackgroundColor="#75D59F"
             CornerRadius="40,40,0,0" />
 
-        <Grid Grid.Row="2" Margin="30">
+
+        <!--  main shopping cart details  -->
+        <Grid
+            x:Name="ShoppingCartDetails"
+            Grid.Row="2"
+            Margin="30"
+            IsClippedToBounds="False">
             <Grid.RowDefinitions>
                 <RowDefinition Height="60" />
                 <RowDefinition Height="*" />
@@ -180,7 +196,6 @@
                 Style="{StaticResource HeaderFontMedium}"
                 Text="Shopping Cart"
                 TextColor="White" />
-
 
             <CollectionView
                 Grid.Row="1"
@@ -226,7 +241,6 @@
                 Grid.Row="3"
                 BackgroundColor="White"
                 CornerRadius="10"
-                HasShadow="True"
                 HeightRequest="60">
                 <Label
                     FontSize="20"

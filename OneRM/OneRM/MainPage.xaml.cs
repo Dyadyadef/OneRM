@@ -254,7 +254,7 @@ namespace OneRM
 
         private void BasketIcon_Clicked(object sender, EventArgs e)
         {
-            CartPopover.IsVisible = true;
+            CartPopover.Expand();
         }
     }
 }
